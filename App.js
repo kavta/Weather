@@ -43,8 +43,10 @@ const style=StyleSheet.create(
     },
     pic:
     {
+      
        marginLeft:"auto",
        marginRight:"auto"
+       
       // height:115,
       // width:115,
     }

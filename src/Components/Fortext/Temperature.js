@@ -5,9 +5,9 @@ export default function Temperature()
 {
 return(
     <View >
-<Text  style={style.tex}>31&deg;C
-</Text>
-</View>
+        <Text  style={style.tex}>31&deg;C
+        </Text>
+    </View>
 
 
 );
@@ -17,6 +17,7 @@ const style=StyleSheet.create(
         {
         tex:
             {
+                justifyContent:"center",
                 fontSize:22,
                 fontStyle:"italic",
                 
