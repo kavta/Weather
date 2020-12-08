@@ -1,3 +1,4 @@
+
 import React from 'react';
 import {Image,View,StyleSheet} from 'react-native';
 import Heading from './src/Components/Fortext/Heading';
@@ -32,6 +33,7 @@ const style=StyleSheet.create(
     height:30
 
   },
+
     container:
     {
       flex:1,
