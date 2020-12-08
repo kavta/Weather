@@ -1,10 +1,10 @@
-mport React from 'react';
+import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Image source={{ uri: 'https://i.imgur.com/TkIrScD.png' }} style={styles.logo} />
+      
       <Text style={styles.instructions}>
         To share a photo from your phone with a friend, just press the button below!
       </Text>
