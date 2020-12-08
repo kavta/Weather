@@ -1,14 +1,41 @@
 import React from "react";
-import { View } from "react-native";
+import { Image, View, StyleSheet } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import Heading from "../../Components/Fortext/Heading";
 
-import CustomButton from "../../components/custom-button/CustomButton";
+import Temperature from "../../Components/Fortext/Temperature";
+import cloudy from "../../../assets/cloudyicon.png";
 
-const HomeScreen = () => {
+export default function HomeScreen() {
   return (
-    <View>
-      <CustomButton />
-    </View>
-  );
-};
+    <SafeAreaView style={{ flex: 1 }}>
+      <View style={style.container}>
+        <View style={style.Headingcontainer}>
+          <Heading />
+        </View>
 
-export default HomeScreen;
+        <View>
+          <Image style={style.pic} source={cloudy} />
+          <Temperature />
+        </View>
+      </View>
+    </SafeAreaView>
+  );
+}
+const style = StyleSheet.create({
+  Headingcontainer: {
+    height: 15,
+  },
+
+  container: {
+    flex: 1,
+    justifyContent: "space-around",
+    flexDirection: "column",
+    alignItems: "center",
+    backgroundColor: "#1A4066",
+  },
+  pic: {
+    marginLeft: "auto",
+    marginRight: "auto",
+  },
+});

@@ -1,25 +1,17 @@
-import React from 'react';
-import {Text, StyleSheet, View } from 'react-native';
+import React from "react";
+import { Text, StyleSheet, View } from "react-native";
 
-export default function Heading()
-{
-    return(
-
-        <View >
-        <Text style={style.tex}>
-            Kathmandu
-        </Text>
-        </View>
-    );
-
+export default function Heading() {
+  return (
+    <View>
+      <Text style={style.tex}>Kathmandu</Text>
+    </View>
+  );
 }
 
-const style=StyleSheet.create(
-{
-tex:
-{
-fontSize:24
-},
-}
-
-);
+const style = StyleSheet.create({
+  tex: {
+    fontSize: 24,
+    color: "white",
+  },
+});

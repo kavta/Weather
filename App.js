@@ -1,58 +1,55 @@
-
-import React from 'react';
-import {Image,View,StyleSheet} from 'react-native';
-import Heading from './src/Components/Fortext/Heading';
-import Temperature from './src/Components/Fortext/Temperature';
-import cloudy from './assets/cloudy.png';
-
-
-export default function App()
-{
-  // const cloudyday=require("./assets/svg/wi-day-cloudy.svg");
-  return(
-    
-    <View style={style.container}>
-      <View style={style.Headingcontainer}>
-          <Heading />
-      </View>
+import React from "react";
+import { View, StyleSheet, SafeAreaView, Text } from "react-native";
+import HomeScreen from "./src/screens/home/HomeScreen";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+const Stack = createStackNavigator();
+const Home = ({ navigation }) => {
+  const handlePress = () => navigation.navigate("Details");
+  return (
+    <SafeAreaView style={{ flex: 1 }}>
+      <View style={style.container}>
+        <HomeScreen />
         <View>
-        <Image style={style.pic}
-        source={cloudy}
-        />
-        <Temperature/> 
+          <Text
+            onPress={handlePress}
+            style={{ textAlign: "center", color: "white" }}
+          >
+            View Details
+          </Text>
+        </View>
       </View>
-    </View>
-    
+    </SafeAreaView>
   );
+};
+const DetailScreen = ({ navigation }) => {
+  // const handleGoback=()=>navigation.goback();
+  return (
+    <SafeAreaView style={{ flex: 1 }}>
+      <View>
+        <Text>Details Screen</Text>
+        {/* <Text onPress={handleGoback}>Go Back</Text> */}
+      </View>
+    </SafeAreaView>
+  );
+};
 
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Details" component={DetailScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 }
-const style=StyleSheet.create(
-{
-  Headingcontainer:
-  {
-    height:30
-
+const style = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "space-around",
+    flexDirection: "column",
+    alignItems: "center",
+    backgroundColor: "#1A4066",
   },
-
-    container:
-    {
-      flex:1,
-      justifyContent:"space-around",
-      flexDirection:"column",
-      alignItems:"center",
-      backgroundColor:"#8aa6d4",
-      
-    },
-    pic:
-    {
-      
-       marginLeft:"auto",
-       marginRight:"auto"
-       
-      // height:115,
-      // width:115,
-    }
-
-}
-
-);
+});
