@@ -1,10 +1,12 @@
-import React from "react";
-import { Image, View, StyleSheet } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import Heading from "../../Components/Fortext/Heading";
+/* eslint-disable react-native/no-color-literals */
+/* eslint-disable react-native/no-inline-styles */
+import React from 'react';
+import { Image, View, StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import Heading from '../../Components/Fortext/Heading';
 
-import Temperature from "../../Components/Fortext/Temperature";
-import cloudy from "../../../assets/cloudyicon.png";
+import Temperature from '../../Components/Fortext/Temperature';
+import cloudy from '../../../assets/cloudyicon.png';
 
 export default function HomeScreen() {
   return (
@@ -29,13 +31,13 @@ const style = StyleSheet.create({
 
   container: {
     flex: 1,
-    justifyContent: "space-around",
-    flexDirection: "column",
-    alignItems: "center",
-    backgroundColor: "#1A4066",
+    justifyContent: 'space-around',
+    flexDirection: 'column',
+    alignItems: 'center',
+    backgroundColor: '#1A4066',
   },
   pic: {
-    marginLeft: "auto",
-    marginRight: "auto",
+    marginLeft: 'auto',
+    marginRight: 'auto',
   },
 });

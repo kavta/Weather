@@ -1,5 +1,6 @@
-import React from "react";
-import { Text, StyleSheet, View } from "react-native";
+/* eslint-disable react-native/no-color-literals */
+import React from 'react';
+import { Text, StyleSheet, View } from 'react-native';
 
 export default function Heading() {
   return (
@@ -12,6 +13,6 @@ export default function Heading() {
 const style = StyleSheet.create({
   tex: {
     fontSize: 24,
-    color: "white",
+    color: 'white',
   },
 });
