@@ -26,8 +26,8 @@ const DetailScreen = ({ navigation }) => {
   // const handleGoback=()=>navigation.goback();
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <View>
-        <Text>Details Screen</Text>
+      <View style={{ backgroundColor: "#1A4066",flex:1}}>
+        <Text style={style.todays}>Today's Weather</Text>
         {/* <Text onPress={handleGoback}>Go Back</Text> */}
       </View>
     </SafeAreaView>
@@ -52,4 +52,9 @@ const style = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#1A4066",
   },
+  todays:
+  {
+    color:"white",
+    fontSize:18
+  }
 });
