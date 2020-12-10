@@ -1,11 +1,11 @@
-import React from "react";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import React from 'react';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 export default function CustomButton() {
   return (
     <View style={styles.container}>
       <Image
-        source={{ uri: "https://i.imgur.com/TkIrScD.png" }}
+        source={{ uri: 'https://i.imgur.com/TkIrScD.png' }}
         style={styles.logo}
       />
       <Text style={styles.instructions}>
@@ -14,10 +14,10 @@ export default function CustomButton() {
       </Text>
 
       <TouchableOpacity
-        onPress={() => alert("Hello, world!")}
-        style={{ backgroundColor: "blue" }}
+        onPress={() => alert('Hello, world!')}
+        style={{ backgroundColor: 'blue' }}
       >
-        <Text style={{ fontSize: 20, color: "#fff" }}>Pick a photo</Text>
+        <Text style={{ fontSize: 20, color: '#fff' }}>Pick a photo</Text>
       </TouchableOpacity>
     </View>
   );
@@ -26,9 +26,9 @@ export default function CustomButton() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   logo: {
     width: 305,
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   instructions: {
-    color: "#888",
+    color: '#888',
     fontSize: 18,
     marginHorizontal: 15,
     marginBottom: 10,

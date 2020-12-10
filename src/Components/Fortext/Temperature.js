@@ -1,20 +1,21 @@
-/* eslint-disable react-native/no-color-literals */
-/* eslint-disable quotes */
-import React from "react";
-import { Text, View, StyleSheet } from "react-native";
+import React from 'react';
+import { Text, View, StyleSheet } from 'react-native';
 
-export default function Temperature() {
+const Temperature = ({ temperature }) => {
   return (
     <View>
-      <Text style={style.tex}>31&deg;C</Text>
+      <Text style={style.tex}>{`${temperature}`}&deg;C</Text>
     </View>
   );
-}
+};
+
+export default Temperature;
+
 const style = StyleSheet.create({
   tex: {
-    textAlign: "center",
+    textAlign: 'center',
     fontSize: 22,
-    color: "white",
-    fontStyle: "italic",
+    color: 'white',
+    fontStyle: 'italic',
   },
 });
