@@ -1,13 +1,5 @@
-/* eslint-disable no-console */
-/* eslint-disable no-undef */
-/* eslint-disable space-infix-ops */
-/* eslint-disable object-curly-newline */
-/* eslint-disable react/no-unescaped-entities */
-/* eslint-disable no-unused-vars */
-/* eslint-disable react-native/no-color-literals */
-/* eslint-disable react-native/no-inline-styles */
-import React from 'react';
-import { View, StyleSheet, SafeAreaView, Text, Button } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, StyleSheet, SafeAreaView, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -29,25 +21,50 @@ const style = StyleSheet.create({
 });
 
 const Stack = createStackNavigator();
-const Drawer=createDrawerNavigator();
-const Kathmandu=() => {
+const Drawer = createDrawerNavigator();
+
+const Kathmandu = () => {
   return (
     <Stack.Navigator initialRouteName="Home">
-      {/* <Button title="setting" onPress={settingPress} /> */}
-      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen
+        name="Home"
+        component={Home}
+        options={{ headerShown: false }}
+      />
+
       <Stack.Screen name="Details" component={DetailScreen} />
     </Stack.Navigator>
-
   );
-
 };
+
 const Home = ({ navigation }) => {
+  // State to maintain current temperature
+  const [temperature, setTemperature] = useState(31);
+
+  useEffect(() => {
+    return () => console.warn('A');
+  }, []);
+
+  useEffect(() => {
+    if (temperature === 28) {
+      console.warn('Mild');
+    }
+  }, [temperature]);
+
+  // Method to update temperature from HomeScreen
+  const handleUpdatePress = () => setTemperature(28);
+
+  // Method to navigate to DetailScreen
   const handlePress = () => navigation.navigate('Details');
+
   return (
-    // eslint-disable-next-line react-native/no-inline-styles
     <SafeAreaView style={{ flex: 1 }}>
       <View style={style.container}>
-        <HomeScreen />
+        <HomeScreen
+          temperature={temperature}
+          onUpdatePress={handleUpdatePress}
+        />
+
         <View>
           <Text
             onPress={handlePress}
@@ -60,6 +77,7 @@ const Home = ({ navigation }) => {
     </SafeAreaView>
   );
 };
+
 const DetailScreen = ({ navigation }) => {
   // const handleGoback=()=>navigation.goback();
   return (
@@ -70,7 +88,8 @@ const DetailScreen = ({ navigation }) => {
     </SafeAreaView>
   );
 };
-const Pokhara=() => {
+
+const Pokhara = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Home1" component={Home1} />
@@ -78,13 +97,16 @@ const Pokhara=() => {
     </Stack.Navigator>
   );
 };
+
 const Home1 = ({ navigation }) => {
   const handlePress = () => navigation.navigate('Details1');
+
   return (
     // eslint-disable-next-line react-native/no-inline-styles
     <SafeAreaView style={{ flex: 1 }}>
       <View style={style.container}>
         <HomeScreen />
+
         <View>
           <Text
             onPress={handlePress}
@@ -97,6 +119,7 @@ const Home1 = ({ navigation }) => {
     </SafeAreaView>
   );
 };
+
 const DetailScreen1 = ({ navigation }) => {
   // const handleGoback=()=>navigation.goback();
   return (
