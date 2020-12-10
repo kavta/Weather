@@ -18,9 +18,9 @@ const style = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'space-around',
-    flexDirection: 'column',
     alignItems: 'center',
     backgroundColor: '#1A4066',
+    padding: 20
   },
   todays: {
     color: 'white',
@@ -34,7 +34,7 @@ const Kathmandu=() => {
   return (
     <Stack.Navigator initialRouteName="Home">
       {/* <Button title="setting" onPress={settingPress} /> */}
-      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
       <Stack.Screen name="Details" component={DetailScreen} />
     </Stack.Navigator>
 

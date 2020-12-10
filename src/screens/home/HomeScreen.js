@@ -11,32 +11,16 @@ import cloudy from '../../../assets/cloudyicon.png';
 export default function HomeScreen() {
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <View style={style.container}>
-        <View style={style.Headingcontainer}>
-          <Heading />
-        </View>
-
-        <View>
-          <Image style={style.pic} source={cloudy} />
-          <Temperature />
-        </View>
+      <Heading />
+      <View>
+        <Image style={style.picture} source={cloudy} />
+        <Temperature />
       </View>
     </SafeAreaView>
   );
 }
 const style = StyleSheet.create({
-  Headingcontainer: {
-    height: 15,
-  },
-
-  container: {
-    flex: 1,
-    justifyContent: 'space-around',
-    flexDirection: 'column',
-    alignItems: 'center',
-    backgroundColor: '#1A4066',
-  },
-  pic: {
+  picture: {
     marginLeft: 'auto',
     marginRight: 'auto',
   },
