@@ -1,54 +1,85 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, SafeAreaView, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { LinearGradient } from 'expo-linear-gradient';
 import HomeScreen from './src/screens/home/HomeScreen';
+import Temperature from './src/Components/Fortext/Temperature';
 import Details from './src/screens/detail/Details';
 
 const style = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'space-around',
     alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: '#1A4066',
-    padding: 20,
+  },
+  background: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    height: 800,
   },
 });
+  // State to maintain current temperature
+  // const [temperature, setTemperature] = useState(31);
+
+// useEffect(() => {
+//   return () => console.warn('A');
+// }, []);
+
+// useEffect(() => {
+//   if (temperature === 28) {
+//     console.warn('Mild');
+//   }
+// }, [temperature]);
+
+// Method to update temperature from HomeScreen
+// const handleUpdatePress = () => setTemperature(28);
 
 const Stack = createStackNavigator();
 
 const Home = ({ navigation }) => {
-  // State to maintain current temperature
-  const [temperature, setTemperature] = useState(31);
 
-  // useEffect(() => {
-  //   return () => console.warn('A');
-  // }, []);
+  const [WeatherResponse, setWeatherResponse] = useState();
+  const [IsFetching, setIsFetching] = useState();
+  useEffect(() => {
+    async function getWeather() {
+      try {
+        setIsFetching(true);
+        const { data } = await axios.get(
+          // 'http://api.weatherstack.com/current?access_key=dbc0fe055e2146e16397ccbc5da6c24d&query=kathmandu'
+          'https://api.openweathermap.org/data/2.5/weather?q=kathmandu&appid=bfb0f059129cba17a682d20328838e3f&units=metric'
+        );
+        setIsFetching(false);
+        setWeatherResponse(data);
+      } catch (e) {
+        console.warn(e);
+      }
 
-  // useEffect(() => {
-  //   if (temperature === 28) {
-  //     console.warn('Mild');
-  //   }
-  // }, [temperature]);
-
-  // Method to update temperature from HomeScreen
-  const handleUpdatePress = () => setTemperature(28);
-
-  // Method to navigate to DetailScreen
+    }
+    getWeather();
+  }, []);
   const handlePress = () => navigation.navigate('Details');
-
+  console.log({ WeatherResponse });
   return (
-    // eslint-disable-next-line react-native/no-inline-styles
+    // eslint-disable-next-line react-na tive/no-inline-styles
     <SafeAreaView style={{ flex: 1 }}>
       <View style={style.container}>
-        <HomeScreen
-          temperature={temperature}
-          onUpdatePress={handleUpdatePress}
+        <LinearGradient
+          colors={['rgba(0,0,0,0.8)', 'transparent']}
+          style={style.background}
         />
+        <HomeScreen weatherrespond={WeatherResponse} />
+        <Temperature weatherrespond={WeatherResponse} isfetching={IsFetching} />
 
+        {/* // temperature={temperature}
+          // onUpdatePress={handleUpdatePress} */}
         <View>
           <TouchableOpacity
             style={{
@@ -63,7 +94,7 @@ const Home = ({ navigation }) => {
             <Text
               style={{ textAlign: 'center', color: 'white' }}
             >
-              View Details
+              Weekly forecast
             </Text>
           </TouchableOpacity>
         </View>
