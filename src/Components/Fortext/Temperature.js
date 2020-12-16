@@ -1,49 +1,33 @@
 import React from 'react';
-import { View, Text, ActivityIndicator, StyleSheet } from 'react-native';
-// import cloudy from '../../../assets/cloudyicon.png';
+import { View, Text, StyleSheet } from 'react-native';
 
-const style = StyleSheet.create(
-
-  {
-    weather:
-    {
-      fontSize: 38,
-      color: 'white',
-      textAlign: 'left',
-    },
-    verticalLines:
-    {
-      height: 60,
-      width: 8,
-      backgroundColor: 'black',
-      // justifyContent: 'space-around'
-
-    }
-  }
-);
-const Temperature = ({ weatherrespond, isfetching }) => {
-  // console.log(icon);
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+  },
+  weather: {
+    fontSize: 38,
+    color: 'white',
+  },
+  verticalLines: {
+    height: 60,
+    width: 2,
+    backgroundColor: 'gray',
+  },
+});
+const Temperature = ({ weatherrespond }) => {
   return (
-    // eslint-disable-next-line react-native/no-inline-styles
-    <View style={{ flexDirection: 'row' }}>
-      {isfetching ? (<ActivityIndicator size="large" />) : (
-        <>
-          <Text style={style.weather}>
+    <View style={styles.container}>
+      <Text style={styles.weather}>
+        {weatherrespond?.temp?.day.toFixed(0)}&deg;C
+      </Text>
 
-            {weatherrespond?.main?.temp}&deg;C
-          </Text>
-          <View style={style.verticalLines} />
-          <Text style={style.weather}>
-            {weatherrespond?.weather[0]?.description}
+      <View style={styles.verticalLines} />
 
-            {/* {weatherrespond?.weather?.description} */}
-            {/* sunrise:{ Sunrise(weatherrespond?.sys?.sunrise)} */}
-            {/* sunset:{Sunset(weatherrespond?.sys?.sunset)} */}
-            {/* {WeatherResponse?.weather?.icon} */}
-          </Text>
-        </>
-      ) }
-      {/* <Text style={style.tex}>{`${temperature}`}&deg;C</Text> */}
+      <Text style={styles.weather}>{weatherrespond?.weather[0]?.main}</Text>
     </View>
   );
 };

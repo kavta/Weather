@@ -1,51 +1,96 @@
-/* eslint-disable react-native/no-raw-text */
-/* eslint-disable react-native/no-inline-styles */
-/* eslint-disable react/jsx-no-comment-textnodes */
-import React from 'react';
-import { Image, View, StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import Heading from '../../Components/Fortext/Heading';
-// import cloudy from '../../../assets/cloudyicon.png';
+import React, { useState, useEffect } from 'react';
+import {
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  Text,
+  ActivityIndicator,
+} from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import axios from 'axios';
 
-const style = StyleSheet.create({
+import Temperature from '../../Components/Fortext/Temperature';
+
+const styles = StyleSheet.create({
+  flexRoot: {
+    flex: 1,
+  },
   container: {
     flex: 1,
-    alignItems: 'center',
-    // backgroundColor: '#1A4066',
-    paddingTop: 20
+    justifyContent: 'center',
+    backgroundColor: '#1A4066',
   },
-  picture:
-  {
-    height: 350,
-    width: 300
-  }
+  background: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    height: 800,
+  },
 });
 
-const HomeScreen = ({ weatherrespond }) => {
-  const icon = weatherrespond?.weather[0]?.icon;
+const latitude = 27.6704163;
+const longitude = 85.3239504;
+
+const HomeScreen = ({ navigation }) => {
+  const [weatherResponse, setWeatherResponse] = useState([]);
+  const [isFetching, setIsFetching] = useState();
+  const insets = useSafeAreaInsets();
+
+  useEffect(() => {
+    async function getWeather() {
+      try {
+        setIsFetching(true);
+        const { data } = await axios.get(
+          `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=current,minutely,hourly,alerts&units=metric&appid=bfb0f059129cba17a682d20328838e3f`
+        );
+        setIsFetching(false);
+        setWeatherResponse(data?.daily);
+      } catch (e) {
+        console.warn(e);
+      }
+    }
+
+    getWeather();
+  }, []);
+
+  const handlePress = () => navigation.navigate('Details', { weatherResponse });
+
   return (
-    <SafeAreaView style={style.container}>
-      <Heading />
+    <View style={styles.flexRoot}>
+      <View style={styles.container}>
+        <LinearGradient
+          colors={['rgba(0,0,0,0.8)', 'transparent']}
+          style={styles.background}
+        />
 
-      <View>
-        <Image style={style.picture} source={{ uri: `https://openweathermap.org/img/wn/${icon}@2x.png` }} />
-        {/* <Image style={style.picture} source={cloudy} /> */}
-        {/* <Image style={style.picture} source={{ uri: 'https://api.openweathermap.org/data/2.5/forecast?q=kathmandu&appid=bfb0f059129cba17a682d20328838e3f' }} /> */}
+        {isFetching ? (
+          <ActivityIndicator />
+        ) : (
+          <View style={[styles.flexRoot, { paddingBottom: insets.bottom }]}>
+            <Temperature weatherrespond={weatherResponse[0]} />
+
+            <View>
+              <TouchableOpacity
+                style={{
+                  borderWidth: 1,
+                  borderRadius: 4,
+                  padding: 10,
+                  borderColor: 'white',
+                  marginTop: 20,
+                }}
+                onPress={handlePress}
+              >
+                <Text style={{ textAlign: 'center', color: 'white' }}>
+                  Weekly Forecast
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        )}
       </View>
-
-      {/* <TouchableOpacity
-        style={{
-          borderWidth: 1,
-          borderRadius: 4,
-          padding: 10,
-          borderColor: 'white',
-          marginTop: 20,
-        }}
-        onPress={onUpdatePress}
-      >
-        <Text style={{ color: 'white', fontSize: 20 }}>Update</Text>
-      </TouchableOpacity> */}
-    </SafeAreaView>
+    </View>
   );
 };
 
