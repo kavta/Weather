@@ -26,24 +26,7 @@ const style = StyleSheet.create({
     height: 800,
   },
 });
-  // State to maintain current temperature
-  // const [temperature, setTemperature] = useState(31);
-
-// useEffect(() => {
-//   return () => console.warn('A');
-// }, []);
-
-// useEffect(() => {
-//   if (temperature === 28) {
-//     console.warn('Mild');
-//   }
-// }, [temperature]);
-
-// Method to update temperature from HomeScreen
-// const handleUpdatePress = () => setTemperature(28);
-
 const Stack = createStackNavigator();
-
 const Home = ({ navigation }) => {
 
   const [WeatherResponse, setWeatherResponse] = useState();
@@ -66,7 +49,7 @@ const Home = ({ navigation }) => {
     getWeather();
   }, []);
   const handlePress = () => navigation.navigate('Details');
-  console.log({ WeatherResponse });
+  // console.log({ WeatherResponse });
   return (
     // eslint-disable-next-line react-na tive/no-inline-styles
     <SafeAreaView style={{ flex: 1 }}>

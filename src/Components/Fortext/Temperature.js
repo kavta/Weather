@@ -49,12 +49,3 @@ const Temperature = ({ weatherrespond, isfetching }) => {
 };
 
 export default Temperature;
-
-// const style = StyleSheet.create({
-//   tex: {
-//     textAlign: 'center',
-//     fontSize: 22,
-//     color: 'white',
-//     fontStyle: 'italic',
-//   },
-// });

@@ -29,7 +29,6 @@ const HomeScreen = ({ weatherrespond }) => {
 
       <View>
         <Image style={style.picture} source={{ uri: `https://openweathermap.org/img/wn/${icon}@2x.png` }} />
-        {/* <Image source={weatherrespond?.weather?.icon} /> */}
         {/* <Image style={style.picture} source={cloudy} /> */}
         {/* <Image style={style.picture} source={{ uri: 'https://api.openweathermap.org/data/2.5/forecast?q=kathmandu&appid=bfb0f059129cba17a682d20328838e3f' }} /> */}
       </View>
