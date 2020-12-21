@@ -17,7 +17,7 @@ export default function App() {
           options={{ headerShown: false }}
         />
 
-        <Stack.Screen name="Details" component={DetailScreen} />
+        <Stack.Screen name="Details" component={DetailScreen} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

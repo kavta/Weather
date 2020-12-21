@@ -4,11 +4,11 @@
     "slug": "weather",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/Logo2.png",
     "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#1A4066"
+      "image": "./assets/Logo2.png",
+      "resizeMode":"contain",
+      "backgroundColor": "#336699"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
